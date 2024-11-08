@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LocalStorage Counter</title>
+    <style>
+        body { font-family: Arial, sans-serif; text-align: center; padding: 20px; }
+        button { margin: 5px; padding: 10px 20px; font-size: 16px; }
+        #counterDisplay { margin-top: 20px; font-size: 24px; font-weight: bold; }
+    </style>
+</head>
+<body>
+
+    <h1>LocalStorage Counter</h1>
+    <button onclick="increaseCounter()">Increase Counter</button>
+    <button onclick="showCounter()">Show Counter</button>
+    <button onclick="clearCounter()">Clear Counter</button>
+
+    <div id="counterDisplay">Counter: 0</div>
+
+    <script>
+        // Increase the counter and save it to localStorage
+        function increaseCounter() {
+            let counter = parseInt(localStorage.getItem("genericCounter")) || 0;
+            counter++;
+            localStorage.setItem("genericCounter", counter);
+            showCounter();
+        }
+
+        // Display the current counter value by fetching from localStorage
+        function showCounter() {
+            let counter = parseInt(localStorage.getItem("genericCounter")) || 0;
+            document.getElementById("counterDisplay").innerText = `Counter: ${counter}`;
+        }
+
+        // Clear the counter in localStorage and reset the display
+        function clearCounter() {
+            localStorage.removeItem("genericCounter");
+            showCounter();
+        }
+
+        // Initial display when the page loads
+        showCounter();
+    </script>
+
+</body>
+</html>
